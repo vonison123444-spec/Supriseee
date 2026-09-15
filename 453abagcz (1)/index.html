@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,6 @@
 }
 
 body {
-  
     margin: 0;
     min-height: 100vh;
 
@@ -424,6 +424,15 @@ h1 {
 <body>
 
 
+<!-- =========================
+     BACKGROUND MUSIC
+     ========================= -->
+
+<audio id="birthdaySong" loop>
+    <source src="aphrodite.mp3" type="audio/mpeg">
+</audio>
+
+
 <div class="card">
 
     <!-- FLOATING HEARTS -->
@@ -489,23 +498,23 @@ h1 {
         <p>
             Happy birthdayyy! 🎂 Sana maging masaya yung araw mo today and ma-enjoy mo lang without worrying about anything. Deserve mong maging masaya lalo na today, so take a break, eat your favorite food, listen to The Ridleys, and just enjoy being you. 
 
-I hope this year will be kinder to you. Sana ma-achieve mo yung mga gusto mo, pero if hindi man agad-agad, okay lang. Take your time lang, one step at a time. I’ll always be here rooting for you, alam mo yan.
+            I hope this year will be kinder to you. Sana ma-achieve mo yung mga gusto mo, pero if hindi man agad-agad, okay lang. Take your time lang, one step at a time. I’ll always be here rooting for you, alam mo yan.
         </p>
 
         <p>
             And kapag dumating yung days na pagod ka or things don’t go the way you want, don’t be too hard on yourself. You’re doing better than you think, so give yourself some credit din. Tas lilibre kita kapag bad day mo. 
 
-I’m really glad and grateful na nakilala kita. Learning all the little things about you was honestly one of the easiest things I’ve done. From The Ridleys, pink, seafood, F1, syempre idol mo si George Russel, pero max verstappen parin ako. Ang dami talaga nating things in common.
+            I’m really glad and grateful na nakilala kita. Learning all the little things about you was honestly one of the easiest things I’ve done. From The Ridleys, pink, seafood, F1, syempre idol mo si George Russel, pero max verstappen parin ako. Ang dami talaga nating things in common.
         </p>
 
         <p>
             And alam mo naman na masaya ako kapag nakikita kitang masaya. Happy pill kita eh. 🤍 
 
-Anyways, enjoy your day, No pressure, no anything. Just have fun, eat good food, and make the most out of today. You deserve it. 
+            Anyways, enjoy your day, No pressure, no anything. Just have fun, eat good food, and make the most out of today. You deserve it. 
 
-Happy birthday ulit!! 🎂🤍 
+            Happy birthday ulit!! 🎂🤍 
 
-PS: Date tayo ulet. Sagot ko syempre, ako nag-aya eh. 
+            PS: Date tayo ulet. Sagot ko syempre, ako nag-aya eh. 
         </p>
 
         <p>
@@ -528,9 +537,17 @@ PS: Date tayo ulet. Sagot ko syempre, ako nag-aya eh.
 
 function openLetter() {
 
+    // Show the letter
     document
         .getElementById("letter")
         .classList.add("show");
+
+    // Start Aphrodite
+    const song = document.getElementById("birthdaySong");
+
+    song.volume = 0.5;
+
+    song.play();
 
 }
 
@@ -538,3 +555,4 @@ function openLetter() {
 
 </body>
 </html>
+```
