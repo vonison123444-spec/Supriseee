@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Surprise</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+  
+    margin: 0;
+    min-height: 100vh;
+
+    background: #05070d;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   BACKGROUND STARS
+   ========================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    background-image:
+        radial-gradient(#ffffff 1px, transparent 1px),
+        radial-gradient(#ffffff 1px, transparent 1px);
+
+    background-size: 70px 70px;
+    background-position: 0 0, 35px 35px;
+
+    opacity: 0.25;
+
+    animation: stars 8s linear infinite;
+}
+
+@keyframes stars {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(70px);
+    }
+
+}
+
+
+/* =========================
+   MAIN CARD
+   ========================= */
+
+.card {
+
+    position: relative;
+
+    width: 360px;
+    height: 620px;
+
+    background: #10151f;
+
+    border: 2px solid white;
+
+    padding: 20px;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 0 20px rgba(255,255,255,0.15);
+
+}
+
+
+/* =========================
+   BIRTHDAY SCREEN
+   ========================= */
+
+.birthday {
+
+    position: absolute;
+
+    inset: 20px;
+
+    background: #ed88a7;
+
+    border: 3px solid white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    animation: appear 1.5s ease;
+}
+
+@keyframes appear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* =========================
+   CAKE
+   ========================= */
+
+.cake {
+
+    position: relative;
+
+    width: 160px;
+    height: 110px;
+
+    margin-bottom: 20px;
+
+    animation: cakeFloat 2s ease-in-out infinite;
+}
+
+@keyframes cakeFloat {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+}
+
+
+/* cake layers */
+
+.cake-body {
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 160px;
+    height: 65px;
+
+    background: #9c624f;
+
+    border-radius: 8px 8px 4px 4px;
+
+    box-shadow:
+        inset 0 -15px rgba(70,40,35,0.2);
+}
+
+
+/* frosting */
+
+.frosting {
+
+    position: absolute;
+
+    top: 30px;
+
+    width: 160px;
+    height: 25px;
+
+    background: #c98570;
+
+    border-radius: 15px 15px 5px 5px;
+}
+
+
+/* candle */
+
+.candle {
+
+    position: absolute;
+
+    top: 0;
+    left: 75px;
+
+    width: 10px;
+    height: 35px;
+
+    background: #f4e4d7;
+
+    border-radius: 3px;
+}
+
+
+/* flame */
+
+.flame {
+
+    position: absolute;
+
+    top: -18px;
+    left: -3px;
+
+    width: 16px;
+    height: 20px;
+
+    background: #ffb400;
+
+    border-radius: 50% 50% 50% 50%;
+
+    animation: flame 0.35s infinite alternate;
+}
+
+@keyframes flame {
+
+    from {
+        transform: scale(0.8);
+        opacity: 0.7;
+    }
+
+    to {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================
+   TEXT
+   ========================= */
+
+h1 {
+
+    font-family: Georgia, serif;
+
+    font-size: 25px;
+
+    font-weight: normal;
+
+    color: #743e50;
+
+    margin: 5px;
+
+    animation: textAppear 2s ease;
+}
+
+@keyframes textAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+.name {
+
+    color: #743e50;
+
+    font-size: 16px;
+
+    font-style: italic;
+
+    margin-top: 5px;
+}
+
+
+/* =========================
+   BUTTON
+   ========================= */
+
+.open {
+
+    margin-top: 30px;
+
+    padding: 12px 25px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background: #743e50;
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.open:hover {
+
+    transform: scale(1.08);
+
+    background: #542c3a;
+}
+
+
+/* =========================
+   LETTER
+   ========================= */
+
+.letter {
+
+    position: absolute;
+
+    inset: 20px;
+
+    background: #fff8ec;
+
+    padding: 30px;
+
+    text-align: left;
+
+    transform: translateY(110%);
+
+    transition: transform 1s ease;
+
+    z-index: 10;
+
+    overflow-y: auto;
+}
+
+
+.letter.show {
+
+    transform: translateY(0);
+
+}
+
+
+.letter h2 {
+
+    text-align: center;
+
+    color: #743e50;
+
+    font-family: Georgia, serif;
+}
+
+
+.letter p {
+
+    color: #4d3b3b;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================
+   FLOATING HEARTS
+   ========================= */
+
+.heart {
+
+    position: absolute;
+
+    color: #ff7fa3;
+
+    font-size: 20px;
+
+    animation: floatHeart 5s linear infinite;
+
+    opacity: 0;
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="card">
+
+    <!-- FLOATING HEARTS -->
+
+    <div class="heart" style="left:10%; animation-delay:0s;">♥</div>
+    <div class="heart" style="left:30%; animation-delay:2s;">♥</div>
+    <div class="heart" style="left:70%; animation-delay:1s;">♥</div>
+    <div class="heart" style="left:90%; animation-delay:3s;">♥</div>
+
+
+    <!-- =========================
+         BIRTHDAY SCREEN
+         ========================= -->
+
+    <div class="birthday">
+
+        <div class="cake">
+
+            <div class="candle">
+                <div class="flame"></div>
+            </div>
+
+            <div class="frosting"></div>
+
+            <div class="cake-body"></div>
+
+        </div>
+
+
+        <h1>HAPPY BIRTHDAY!</h1>
+
+        <!-- CHANGE NAME HERE -->
+
+        <div class="name">
+            MIKMIK!!!
+        </div>
+
+
+        <button class="open" onclick="openLetter()">
+            💌 Open Letter
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         LETTER
+         ========================= -->
+
+    <div class="letter" id="letter">
+
+        <h2>For You ♥</h2>
+
+
+        <!-- =================================
+             PUT YOUR LETTER HERE
+             ================================= -->
+
+        <p>
+            Dear mikmik,
+        </p>
+
+        <p>
+            Happy birthdayyy! 🎂 Sana maging masaya yung araw mo today and ma-enjoy mo lang without worrying about anything. Deserve mong maging masaya lalo na today, so take a break, eat your favorite food, listen to The Ridleys, and just enjoy being you. 
+
+I hope this year will be kinder to you. Sana ma-achieve mo yung mga gusto mo, pero if hindi man agad-agad, okay lang. Take your time lang, one step at a time. I’ll always be here rooting for you, alam mo yan.
+        </p>
+
+        <p>
+            And kapag dumating yung days na pagod ka or things don’t go the way you want, don’t be too hard on yourself. You’re doing better than you think, so give yourself some credit din. Tas lilibre kita kapag bad day. 
+
+I’m really glad and grateful na nakilala kita. Learning all the little things about you was honestly one of the easiest things I’ve done. From The Ridleys, pink, seafood, F1, syempre idol mo si George Russel, pero max verstappen parin ako. Ang dami talaga nating things in common.
+        </p>
+
+        <p>
+            And alam mo naman na masaya ako kapag nakikita kitang masaya. Happy pill kita eh. 🤍 
+
+Anyways, enjoy your day, No pressure, no anything. Just have fun, eat good food, and make the most out of today. You deserve it. 
+
+Happy birthday ulit!! 🎂🤍 
+
+PS: Date tayo ulet. Sagot ko syempre, ako nag-aya eh. 
+        </p>
+
+        <p>
+            I hope you have an amazing birthday!
+            You deserve all the happiness in the world.
+        </p>
+
+        <p>
+            From,<br>
+            Von ♥
+        </p>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+function openLetter() {
+
+    document
+        .getElementById("letter")
+        .classList.add("show");
+
+}
+
+</script>
+
+</body>
+</html>
